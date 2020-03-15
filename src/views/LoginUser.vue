@@ -14,6 +14,12 @@
       <button type="submit" name="button">
         Login
       </button>
+
+      <p>{{ error }}</p>
+
+      <router-link to="/register">
+        Don't have an account? Register.
+      </router-link>
     </form>
   </div>
 </template>
@@ -23,7 +29,8 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: null
     }
   },
   methods: {
@@ -34,6 +41,9 @@ export default {
       })
         .then(() => {
           this.$router.push({ name: 'dashboard' })
+        })
+        .catch(err => {
+          this.error = err.response.data.error
         })
     }
   }

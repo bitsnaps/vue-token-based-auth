@@ -45,9 +45,16 @@ app.post('/register', (req, res) => {
 
     const data = JSON.stringify(user, null, 2)
     var dbUserEmail = require('./db/user.json').email
+    var errorsToSend = []
 
     if (dbUserEmail === req.body.email) {
-      res.sendStatus(400)
+      errorsToSend.push('An account with this email already exists.')
+    }
+    if (user.password.length < 5) {
+      errorsToSend.push('Password too short.')
+    }
+    if (user.password.length > 0) {
+      res.status(400).json({ errors: errorsToSend })
     } else {
       fs.writeFile('./db/user.json', data, err => {
         if (err) {
@@ -69,8 +76,10 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
+  // reading the db
   const userDB = fs.readFileSync('./db/user.json')
   const userInfo = JSON.parse(userDB)
+  // checking if user exists
   if (
     req.body &&
     req.body.email === userInfo.email &&
