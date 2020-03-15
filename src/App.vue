@@ -7,9 +7,13 @@
 
 <script>
 import AppNav from './components/AppNav'
+import { authComputed } from './vuex/helpers.js'
 
 export default {
-  components: { AppNav }
+  components: { AppNav },
+  computed: {
+    ...authComputed
+  }
 }
 </script>
 
