@@ -1,4 +1,4 @@
-# authentication_course
+# Vue Token Based Authentication
 
 ## Project setup
 
@@ -7,9 +7,15 @@ npm install
 ```
 
 ### Compiles and hot-reloads for development & starts backend server
-
+P.S. This will runs the node app on `http://localhost:3000`
 ```
 npm run start
+```
+
+## Running the Vue App
+This will run the vue app on `http://localhost:3001`:
+```
+npm run serve
 ```
 
 ### Compiles and minifies for production
@@ -33,9 +39,3 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-## Run Vue App
-```
-npm run serve
-```
-It should runs on `http://localhost:3001`, whereas the node app running with `npm run start` should had started on `http://localhost:3000`.
